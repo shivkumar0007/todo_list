@@ -22,7 +22,7 @@ const TodoList = () => {
     <div className="flex flex-col items-center pt-5 w-full">
       <div className="flex items-center justify-center gap-5">
         <input
-          className="bg-gray-300 focus:outline-none rounded-2xl p-2 w-90 text-gray-800 font-bold"
+          className={theme=="light" ?"bg-gray-300 focus:outline-none rounded-2xl p-2 w-90 text-gray-800 font-bold" : "bg-gray-800 focus:outline-none rounded-2xl p-2 w-90 text-gray-200 font-bold"}
           type="text"
           placeholder="Input List"
           value={inputValue}
@@ -41,7 +41,7 @@ const TodoList = () => {
         />
 
         <button
-          className="rounded-3xl h-9 w-20 text-gray-700 ml-5 bg-green-400"
+          className={theme=="light" ?"rounded-3xl h-9 w-20 text-gray-700 ml-5 bg-green-400" :"rounded-3xl h-9 w-20 text-gray-200 ml-5 bg-green-600"}
           onClick={() => {
             if (inputValue.trim() !== "") {
               setTodoList([...todoList, { text: inputValue, color: color }]);
@@ -75,7 +75,7 @@ const TodoList = () => {
     peer-checked:after:translate-x-6"
   ></div>
 
-  <span className="ml-3 text-sm font-medium">
+  <span className={theme=="light" ?"ml-3 text-sm text-gray-800 font-medium" :"ml-3 text-sm text-gray-200 font-medium"}>
     {theme === "dark" ? "Dark" : "Light"}
   </span>
 
@@ -90,10 +90,10 @@ const TodoList = () => {
             className="h-9 w-100 rounded-tl-2xl rounded-br-2xl pl-4 pr-4 items-center mt-5 flex justify-between"
             style={{ backgroundColor: ele.color }}
           >
-            {ele.text}
+            <p className={theme=="light" ? "text-gray-700 font-sm text-xl" :"text-gray-200 font-sm text-xl"}>{ele.text}</p>
 
             <svg
-              className="text-red-500 cursor-pointer w-6 h-6"
+              className={theme=="light" ? "text-red-400 cursor-pointer w-6 h-6" :"text-red-600 cursor-pointer w-6 h-6"}
               onClick={() => {
                 setTodoList(
                   todoList.filter((_, i) => {
